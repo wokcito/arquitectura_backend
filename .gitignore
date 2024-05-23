@@ -1,0 +1,28 @@
+# Entorno virtual
+maxi/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Carpeta de archivos de registro y resultados
+logs/
+*.log
+*.pot
+*.pyc
+*.swp
+*~
+
+# Virtualenv
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Otros
+.DS_Store
+Thumbs.db
+.env
+.env.local
+.env.*.local
+!.env.example
