@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Propiedades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .user-info {
+            margin-bottom: 20px;
+        }
+        .user-info .username {
+            font-weight: bold;
+        }
+        .auth-buttons {
+            margin-top: 10px;
+        }
+        .auth-buttons button {
+            padding: 8px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .auth-buttons button:first-child {
+            margin-right: 0;
+        }
+        .add-property-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-info">
+        {% if user %}
+            <p>Bienvenido, <span class="username">{{ user.username }}</span>!</p>
+        {% else %}
+            <p>Por favor inicia sesión o regístrate:</p>
+        {% endif %}
+        <div class="auth-buttons">
+            {% if user %}
+                <button onclick="location.href='/logout'">Cerrar sesión</button>
+                <button onclick="location.href='/create-property'">Añadir Propiedad</button>
+            {% else %}
+                <button onclick="location.href='/signin'">Iniciar sesión</button>
+                <button onclick="location.href='/signup'">Registrarse</button>
+            {% endif %}
+        </div>
+    </div>
+
+    <h1>Lista de Propiedades</h1>
+    <ul>
+        {% for property in properties %}
+        <li>
+            <strong>Dirección:</strong> {{ property.address }}<br>
+            <strong>Dueño:</strong> {{ property.owner.username }}<br>
+            <strong>Precio:</strong> {{ property.price }}<br>
+            <strong>Precio Por:</strong> {{ property.get_priceBy_display }}<br>
+            <strong>Máximo de Huéspedes:</strong> {{ property.max_guests }}<br>
+            <strong>Descripción:</strong> {{ property.description }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
